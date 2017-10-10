@@ -26,3 +26,16 @@ class PROT(solution.SimpleWriteSolution):
             prot += amino_acid
 
         raise RuntimeError('Should have returned the result by now')
+
+
+class PRTM(solution.SimpleWriteSolution):
+
+    _NAME = 'PRTM'
+
+    @classmethod
+    def _read(cls, f):
+        return utils.first_line(f)
+
+    @classmethod
+    def _solve(cls, data):
+        return sum([utils.PROT_MASS_TABLE[aa] for aa in data])
