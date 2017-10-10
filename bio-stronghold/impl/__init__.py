@@ -4,3 +4,4 @@ from . import GC
 from . import HAMM
 from . import IPRB
 from . import PROT
+from . import SUBS
