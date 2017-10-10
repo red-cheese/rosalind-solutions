@@ -19,10 +19,16 @@ class Solution:
     def _write(cls, f, answer):
         raise NotImplementedError
 
+    @classmethod
+    def __all_subclasses__(cls):
+        for subclass in cls.__subclasses__():
+            yield from subclass.__all_subclasses__()
+            yield subclass
+
     @staticmethod
     def solve(name):
         cls = None
-        for subcls in Solution.__subclasses__():
+        for subcls in Solution.__all_subclasses__():
             if subcls._NAME == name:
                 cls = subcls
                 break
@@ -38,3 +44,10 @@ class Solution:
             cls._write(f, answer)
 
         return answer
+
+
+class SimpleWriteSolution(Solution):
+
+    @classmethod
+    def _write(cls, f, answer):
+        f.write(str(answer))
