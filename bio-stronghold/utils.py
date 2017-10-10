@@ -60,3 +60,28 @@ PROT_MASS_TABLE = {
 
 def first_line(f):
     return next(f).strip()
+
+
+def read_fasta(f):
+    dnas = []
+
+    id_, dna = None, ''
+
+    for line in f:
+        line = line.strip()
+
+        if line.startswith('>'):
+            # Flush the old ID and DNA.
+            if id_ is not None:
+                dnas.append((id_, dna))
+                dna = ''
+
+            id_ = line[1:]  # Strip the '<' symbol.
+        else:
+            dna += line
+
+    # Flush the last one.
+    if id_ is not None:
+        dnas.append((id_, dna))
+
+    return dnas

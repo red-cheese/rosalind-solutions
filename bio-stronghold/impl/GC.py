@@ -8,30 +8,7 @@ class GC(solution.Solution):
 
     @classmethod
     def _read(cls, f):
-        dnas = []
-
-        id_ = None
-        dna = ''
-
-        for line in f:
-            line = line.strip()
-            print(line)
-
-            if line.startswith('>'):
-                # Flush the old ID.
-                if id_ is not None:
-                    dnas.append((id_, dna))
-                    dna = ''
-
-                id_ = line
-            else:
-                dna += line
-
-        # Flush the last one.
-        if id_ is not None:
-            dnas.append((id_, dna))
-
-        return dnas
+        return utils.read_fasta(f)
 
     @classmethod
     def _solve(cls, data):

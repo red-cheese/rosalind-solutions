@@ -1,5 +1,6 @@
 import numpy as np
 import solution
+import utils
 
 
 class CONS(solution.Solution):
@@ -10,27 +11,7 @@ class CONS(solution.Solution):
 
     @classmethod
     def _read(cls, f):
-        dnas = []
-
-        dna = ''
-
-        for line in f:
-            line = line.strip()
-
-            if line.startswith('>'):
-                # Flush the old dna.
-                    if dna:
-                        dnas.append(list(dna))
-                    dna = ''
-            else:
-                dna += line
-
-        # Flush the last one.
-        dnas.append(list(dna))
-
-        l = len(dnas[0])
-        assert all([len(dna) == l for dna in dnas])
-
+        dnas = [list(dna) for _, dna in utils.read_fasta(f)]
         return np.asarray(dnas)
 
     @classmethod
