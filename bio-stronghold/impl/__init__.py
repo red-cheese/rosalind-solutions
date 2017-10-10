@@ -1,2 +1,3 @@
-import DNA_RNA_REVC
-import FIBD
+from . import DNA_RNA_REVC
+from . import FIBD
+from . import GC
