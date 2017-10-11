@@ -3,7 +3,7 @@ from . import FIBD
 from . import GC
 from . import HAMM
 from . import IPRB_IEV
-from . import PROT_PRTM
+from . import PROT_PRTM_MPRT
 from . import SUBS
 from . import CONS
 from . import GRPH
