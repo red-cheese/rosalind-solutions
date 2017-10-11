@@ -1,3 +1,4 @@
+import collections
 import solution
 import utils
 from urllib import request
@@ -94,3 +95,29 @@ class MPRT(solution.Solution):
             if indices:
                 f.write('{id}\n{indices}\n'
                         .format(id=id_, indices=' '.join([str(i + 1) for i in indices])))
+
+
+class MRNA(solution.SimpleWriteSolution):
+
+    _NAME = 'MRNA'
+
+    @classmethod
+    def _read(cls, f):
+        return utils.first_line(f)
+
+    @classmethod
+    def _solve(cls, data):
+        # Reverse the protein codon table (just counts are enough).
+        num_codons = collections.defaultdict(int)
+        for codon, aa in utils.PROT_CODON_TABLE.items():
+            num_codons[aa] += 1
+
+        opts = [num_codons[aa] for aa in data]
+        opts.append(num_codons[-1])
+
+        # Now compute the product mod 1M.
+        res = 1
+        for opt in opts:
+            res = (res * opt) % 1000000
+
+        return res
