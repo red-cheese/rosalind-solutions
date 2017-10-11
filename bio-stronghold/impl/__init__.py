@@ -7,3 +7,4 @@ from . import PROT_PRTM
 from . import SUBS
 from . import CONS
 from . import GRPH
+from . import LCSM

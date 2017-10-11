@@ -62,7 +62,7 @@ def first_line(f):
     return next(f).strip()
 
 
-def read_fasta(f):
+def read_fasta(f, dna_only=False):
     dnas = []
 
     id_, dna = None, ''
@@ -84,4 +84,4 @@ def read_fasta(f):
     if id_ is not None:
         dnas.append((id_, dna))
 
-    return dnas
+    return dnas if not dna_only else [dna for _, dna in dnas]
