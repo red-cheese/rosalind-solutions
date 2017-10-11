@@ -1,11 +1,11 @@
 
 
-ADENINE = 'A'
-CYTOSINE = 'C'
-GUANINE = 'G'
-THYMINE = 'T'
+ADENINE = A = 'A'
+CYTOSINE = C = 'C'
+GUANINE = G = 'G'
+THYMINE = T = 'T'
 
-URACIL = 'U'
+URACIL = U = 'U'
 
 DNA_COMPLEMENTS = {
     ADENINE: THYMINE,
