@@ -13,3 +13,4 @@ from . import PROB
 from . import ORF
 from . import PERM
 from . import REVP
+from . import SPLC
