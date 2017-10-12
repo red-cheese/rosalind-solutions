@@ -15,6 +15,8 @@ DNA_COMPLEMENTS = {
 }
 
 
+PROT_START_CODON = 'AUG'
+
 PROT_CODON_TABLE = {
     'UUU': 'F',      'CUU': 'L',      'AUU': 'I',      'GUU': 'V',
     'UUC': 'F',      'CUC': 'L',      'AUC': 'I',      'GUC': 'V',
