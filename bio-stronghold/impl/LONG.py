@@ -39,7 +39,7 @@ class LONG(solution.SimpleWriteSolution):
     @classmethod
     def _solve(cls, data):
         """Heuristic approach: choose the pair that overlaps the most
-        (= kills the biggest % of its shortest member),
+        (= kills the biggest % of its longest member),
         glue the pair, repeat."""
 
         data = set(data)  # Remove duplicates, if any.
