@@ -1,16 +1,14 @@
-from . import DNA_RNA_REVC
-from . import FIBD
-from . import GC
-from . import HAMM
-from . import IPRB_IEV
-from . import PROT_PRTM_MPRT_MRNA
-from . import SUBS
-from . import CONS
-from . import GRPH
-from . import LCSM
-from . import LIA
-from . import PROB
-from . import ORF
-from . import PERM
-from . import REVP
-from . import SPLC
+import os
+import types
+from importlib import machinery
+
+
+cur_dir = os.path.dirname(__file__)
+for path in os.listdir(cur_dir):
+    if path.endswith('.py') and not path.startswith('_'):
+        loader = machinery.SourceFileLoader(path[:-3], os.path.join(cur_dir, path))
+        mod = types.ModuleType(loader.name)
+        loader.exec_module(mod)
+
+        # To allow statements like 'from . import <name>'
+        globals()[loader.name] = mod

@@ -1,6 +1,6 @@
 import solution
 import utils
-from . import DNA_RNA_REVC
+from impl import DNA_RNA_REVC
 
 
 class ORF(solution.Solution):
