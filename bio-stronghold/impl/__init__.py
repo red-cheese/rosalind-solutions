@@ -10,5 +10,5 @@ for path in os.listdir(cur_dir):
         mod = types.ModuleType(loader.name)
         loader.exec_module(mod)
 
-        # To allow statements like 'from . import <name>'
+        # To allow statements like 'from impl import <name>'
         globals()[loader.name] = mod
