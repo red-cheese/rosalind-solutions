@@ -10,11 +10,11 @@ class Solution:
         raise NotImplementedError
 
     @classmethod
-    def _solve(cls, *args, **kwargs):
+    def _solve(cls, data):
         raise NotImplementedError
 
     @classmethod
-    def _write(cls, f, *args, **kwargs):
+    def _write(cls, f, answer):
         raise NotImplementedError
 
     @classmethod
@@ -36,12 +36,12 @@ class Solution:
 
         with open(cls._IN, 'r') as f:
             data = cls._read(f)
-            answers = cls._solve(data)
+            answer = cls._solve(data)
 
         with open(cls._OUT, 'w') as f:
-            cls._write(f, *answers)
+            cls._write(f, answer)
 
-        return answers
+        return answer
 
 
 class SimpleWriteSolution(Solution):

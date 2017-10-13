@@ -76,7 +76,7 @@ class SIGN(solution.Solution):
         return len(perms), perms
 
     @classmethod
-    def _write(cls, f, perms_len, perms):
-        f.write(str(perms_len) + '\n')
-        for perm in perms:
+    def _write(cls, f, answer):
+        f.write(str(answer[0]) + '\n')
+        for perm in answer[1]:
             f.write(' '.join([str(i) for i in perm]) + '\n')
