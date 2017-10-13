@@ -38,3 +38,26 @@ class PERM(solution.Solution):
         for perm in answer:
             f.write(' '.join([str(n) for n in perm]))
             f.write('\n')
+
+
+class PPER(solution.SimpleWriteSolution):
+
+    _NAME = 'PPER'
+
+    @classmethod
+    def _read(cls, f):
+        N, k = utils.first_line(f).split()
+        return int(N), int(k)
+
+    @classmethod
+    def _solve(cls, data):
+        N, k = data
+        P_Nk = 1
+
+        # In general, it's just math.factorial(N) // math.factorial(N - k),
+        # but we need modulo 1000000 here.
+        for i in range(N, N - k, -1):
+            P_Nk *= i
+            P_Nk %= 1000000
+
+        return P_Nk
