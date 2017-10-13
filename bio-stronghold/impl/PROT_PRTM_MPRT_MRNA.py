@@ -6,8 +6,6 @@ from urllib import request
 
 class PROT(solution.SimpleWriteSolution):
 
-    _NAME = 'PROT'
-
     @classmethod
     def _read(cls, f):
         return utils.first_line(f)
@@ -32,8 +30,6 @@ class PROT(solution.SimpleWriteSolution):
 
 class PRTM(solution.SimpleWriteSolution):
 
-    _NAME = 'PRTM'
-
     @classmethod
     def _read(cls, f):
         return utils.first_line(f)
@@ -44,8 +40,6 @@ class PRTM(solution.SimpleWriteSolution):
 
 
 class MPRT(solution.Solution):
-
-    _NAME = 'MPRT'
 
     _URL_FORMAT = 'http://www.uniprot.org/uniprot/{id}.fasta'
     _N_GLYCOLYSATION = [
@@ -98,8 +92,6 @@ class MPRT(solution.Solution):
 
 
 class MRNA(solution.SimpleWriteSolution):
-
-    _NAME = 'MRNA'
 
     @classmethod
     def _read(cls, f):

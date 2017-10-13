@@ -4,8 +4,6 @@ import utils
 
 class DNA(solution.Solution):
 
-    _NAME = 'DNA'
-
     @classmethod
     def _read(cls, f):
         return utils.first_line(f)
@@ -38,8 +36,6 @@ class DNA(solution.Solution):
 
 class RNA(solution.Solution):
 
-    _NAME = 'RNA'
-
     @classmethod
     def _read(cls, f):
         return utils.first_line(f)
@@ -55,8 +51,6 @@ class RNA(solution.Solution):
 
 
 class REVC(solution.Solution):
-
-    _NAME = 'REVC'
 
     @classmethod
     def _read(cls, f):

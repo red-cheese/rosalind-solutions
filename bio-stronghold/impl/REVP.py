@@ -5,8 +5,6 @@ from impl import DNA_RNA_REVC
 
 class REVP(solution.Solution):
 
-    _NAME = 'REVP'
-
     _MIN_REVP_LEN = 4
     _MAX_REVP_LEN = 12
 

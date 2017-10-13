@@ -5,8 +5,6 @@ import utils
 
 class PMCH(solution.SimpleWriteSolution):
 
-    _NAME = 'PMCH'
-
     @classmethod
     def _read(cls, f):
         return utils.read_fasta(f, dna_only=True)[0]

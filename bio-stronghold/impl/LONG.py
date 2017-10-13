@@ -4,8 +4,6 @@ import utils
 
 class LONG(solution.SimpleWriteSolution):
 
-    _NAME = 'LONG'
-
     @classmethod
     def _read(cls, f):
         return utils.read_fasta(f, dna_only=True)

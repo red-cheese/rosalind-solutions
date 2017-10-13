@@ -6,8 +6,6 @@ from impl import PROT_PRTM_MPRT_MRNA
 
 class SPLC(solution.SimpleWriteSolution):
 
-    _NAME = 'SPLC'
-
     @classmethod
     def _read(cls, f):
         return utils.read_fasta(f, dna_only=True)

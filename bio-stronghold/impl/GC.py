@@ -4,8 +4,6 @@ import utils
 
 class GC(solution.Solution):
 
-    _NAME = 'GC'
-
     @classmethod
     def _read(cls, f):
         return utils.read_fasta(f)

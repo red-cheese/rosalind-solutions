@@ -5,8 +5,6 @@ from scipy.special import binom
 
 class LIA(solution.SimpleWriteSolution):
 
-    _NAME = 'LIA'
-
     @classmethod
     def _read(cls, f):
         k, N = utils.first_line(f).split()

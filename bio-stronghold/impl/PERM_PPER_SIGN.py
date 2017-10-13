@@ -4,25 +4,28 @@ import utils
 
 class PERM(solution.Solution):
 
-    _NAME = 'PERM'
-
     @classmethod
     def _read(cls, f):
         return int(utils.first_line(f))
 
     @classmethod
-    def _solve_helper(cls, numbers):
+    def _solve_helper(cls, numbers, sign=False):
         if len(numbers) == 0:
             raise ValueError
 
         if len(numbers) == 1:
-            return [numbers]
+            return [[-numbers[0]], [numbers[0]]]
 
         perms = []
         for i, n in enumerate(numbers):
             rest = numbers[:i] + numbers[(i + 1):]
-            for perm in cls._solve_helper(rest):
-                perms.append([n] + perm)
+
+            # Two passes so that the results are nicely arranged.
+            perms_rec = cls._solve_helper(rest, sign=sign)
+            if sign:
+                perms.extend([[-n] + perm for perm in perms_rec])
+            perms.extend([[n] + perm for perm in perms_rec])
+
         return perms
 
     @classmethod
@@ -42,8 +45,6 @@ class PERM(solution.Solution):
 
 class PPER(solution.SimpleWriteSolution):
 
-    _NAME = 'PPER'
-
     @classmethod
     def _read(cls, f):
         N, k = utils.first_line(f).split()
@@ -61,3 +62,21 @@ class PPER(solution.SimpleWriteSolution):
             P_Nk %= 1000000
 
         return P_Nk
+
+
+class SIGN(solution.Solution):
+
+    @classmethod
+    def _read(cls, f):
+        return int(utils.first_line(f))
+
+    @classmethod
+    def _solve(cls, n):
+        perms = PERM._solve_helper(list(range(1, n + 1)), sign=True)
+        return len(perms), perms
+
+    @classmethod
+    def _write(cls, f, perms_len, perms):
+        f.write(str(perms_len) + '\n')
+        for perm in perms:
+            f.write(' '.join([str(i) for i in perm]) + '\n')

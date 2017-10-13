@@ -4,8 +4,6 @@ import utils
 
 class FIBD(solution.Solution):
 
-    _NAME = 'FIBD'
-
     @classmethod
     def _read(cls, f):
         n, m = utils.first_line(f).split()

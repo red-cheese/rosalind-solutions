@@ -5,8 +5,6 @@ import utils
 
 class PROB(solution.Solution):
 
-    _NAME = 'PROB'
-
     @classmethod
     def _read(cls, f):
         dna = next(f).strip()

@@ -2,8 +2,6 @@
 
 class Solution:
 
-    _NAME = '_ABSTRACT'
-
     _IN = 'in.txt'
     _OUT = 'out.txt'
 
@@ -12,11 +10,11 @@ class Solution:
         raise NotImplementedError
 
     @classmethod
-    def _solve(cls, data):
+    def _solve(cls, *args, **kwargs):
         raise NotImplementedError
 
     @classmethod
-    def _write(cls, f, answer):
+    def _write(cls, f, *args, **kwargs):
         raise NotImplementedError
 
     @classmethod
@@ -29,7 +27,7 @@ class Solution:
     def solve(name):
         cls = None
         for subcls in Solution.__all_subclasses__():
-            if subcls._NAME == name:
+            if subcls.__name__ == name:
                 cls = subcls
                 break
 
@@ -38,12 +36,12 @@ class Solution:
 
         with open(cls._IN, 'r') as f:
             data = cls._read(f)
-            answer = cls._solve(data)
+            answers = cls._solve(data)
 
         with open(cls._OUT, 'w') as f:
-            cls._write(f, answer)
+            cls._write(f, *answers)
 
-        return answer
+        return answers
 
 
 class SimpleWriteSolution(Solution):

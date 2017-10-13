@@ -3,8 +3,6 @@ import solution
 
 class LEXF(solution.Solution):
 
-    _NAME = 'LEXF'
-
     @classmethod
     def _read(cls, f):
         alphabet = next(f).strip().split()

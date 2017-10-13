@@ -4,8 +4,6 @@ import solution
 
 class HAMM(solution.SimpleWriteSolution):
 
-    _NAME = 'HAMM'
-
     @classmethod
     def _read(cls, f):
         lines = [line.strip() for line in f if line.strip()]

@@ -4,8 +4,6 @@ import utils
 
 class GRPH(solution.Solution):
 
-    _NAME = 'GRPH'
-
     _K = 3
 
     @classmethod

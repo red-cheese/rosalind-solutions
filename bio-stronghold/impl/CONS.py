@@ -5,8 +5,6 @@ import utils
 
 class CONS(solution.Solution):
 
-    _NAME = 'CONS'
-
     _IDX = ['A', 'C', 'G', 'T']
 
     @classmethod

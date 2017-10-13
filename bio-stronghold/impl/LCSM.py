@@ -4,8 +4,6 @@ import utils
 
 class LCSM(solution.SimpleWriteSolution):
 
-    _NAME = 'LCSM'
-
     _SEP = 'Z'  # Bigger than 'A', 'C', 'G', 'T'
 
     @classmethod

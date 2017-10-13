@@ -5,8 +5,6 @@ from impl import DNA_RNA_REVC
 
 class ORF(solution.Solution):
 
-    _NAME = 'ORF'
-
     @classmethod
     def _read(cls, f):
         return utils.read_fasta(f, dna_only=True)[0]

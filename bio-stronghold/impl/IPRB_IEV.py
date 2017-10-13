@@ -5,8 +5,6 @@ import utils
 
 class IPRB(solution.SimpleWriteSolution):
 
-    _NAME = 'IPRB'
-
     @classmethod
     def _read(cls, f):
         line = utils.first_line(f)
@@ -28,8 +26,6 @@ class IPRB(solution.SimpleWriteSolution):
 
 
 class IEV(solution.SimpleWriteSolution):
-
-    _NAME = 'IEV'
 
     # AA-AA, AA-Aa, AA-aa, Aa-Aa, Aa-aa, aa-aa
     _DOMINANT_WEIGHTS = np.asarray([1., 1., 1., .75, .5, 0.])

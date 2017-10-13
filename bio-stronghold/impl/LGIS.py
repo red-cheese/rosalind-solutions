@@ -4,8 +4,6 @@ import solution
 
 class LGIS(solution.Solution):
 
-    _NAME = 'LGIS'
-
     @classmethod
     def _read(cls, f):
         _ = next(f)
