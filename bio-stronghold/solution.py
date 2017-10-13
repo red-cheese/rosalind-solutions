@@ -2,19 +2,25 @@
 
 class Solution:
 
-    _IN = 'in.txt'
-    _OUT = 'out.txt'
+    def __init__(self, input, output):
+        self._input = input
+        self._output = output
 
-    @classmethod
-    def _read(cls, f):
+    @property
+    def input(self):
+        return self._input
+
+    @property
+    def output(self):
+        return self._output
+
+    def _read(self, f):
         raise NotImplementedError
 
-    @classmethod
-    def _solve(cls, data):
+    def _solve(self, data):
         raise NotImplementedError
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         raise NotImplementedError
 
     @classmethod
@@ -24,7 +30,7 @@ class Solution:
             yield subclass
 
     @staticmethod
-    def solve(name):
+    def solve(name, input, output):
         cls = None
         for subcls in Solution.__all_subclasses__():
             if subcls.__name__ == name:
@@ -34,18 +40,25 @@ class Solution:
         if cls is None:
             raise ValueError("Unknown task: '{}'".format(name))
 
-        with open(cls._IN, 'r') as f:
-            data = cls._read(f)
-            answer = cls._solve(data)
+        alg = cls(input, output)
 
-        with open(cls._OUT, 'w') as f:
-            cls._write(f, answer)
+        with open(alg.input, 'r') as f:
+            data = alg._read(f)
+            answer = alg._solve(data)
+
+        with open(alg.output, 'w') as f:
+            alg._write(f, answer)
 
         return answer
 
 
 class SimpleWriteSolution(Solution):
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _read(self, f):
+        raise NotImplementedError
+
+    def _solve(self, data):
+        raise NotImplementedError
+
+    def _write(self, f, answer):
         f.write(str(answer))

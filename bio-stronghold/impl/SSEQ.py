@@ -4,24 +4,19 @@ import utils
 
 class SSEQ(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         s, t = utils.read_fasta(f, dna_only=True)
         return s, t
 
-    @classmethod
-    def _solve(cls, data):
+    def _solve(self, data):
         s, t = data
         if not t or not s or len(t) > len(s):
             raise ValueError
 
         res = []
 
-        print(s, t)
-
         i = 0
         for j in range(len(s)):
-            print(i, j)
             if s[j] == t[i]:
                 res.append(j)
                 i += 1
@@ -32,6 +27,5 @@ class SSEQ(solution.Solution):
 
         return res
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.write(' '.join([str(pos + 1) for pos in answer]))

@@ -1,15 +1,18 @@
 #!/usr/bin/python
 
+import argparse
 import impl
 import solution
 import sys
 
 
-def main(id_=None):
-    if id_ is None and len(sys.argv) < 2:
-        raise RuntimeError('Please provide problem ID')
-
-    print(solution.Solution.solve(id_ or sys.argv[1]))
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('id', metavar='ID', help='Problem ID (e.g. DNA)')
+    parser.add_argument('-i', '--input', default='in.txt', help='Input file')
+    parser.add_argument('-o', '--output', default='out.txt', help='Output file')
+    args = parser.parse_args(sys.argv[1:])
+    print(solution.Solution.solve(args.id, args.input, args.output))
 
 
 if __name__ == '__main__':
