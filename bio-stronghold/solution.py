@@ -62,3 +62,15 @@ class SimpleWriteSolution(Solution):
 
     def _write(self, f, answer):
         f.write(str(answer))
+
+
+class ArrayWriteSolution(Solution):
+
+    def _read(self, f):
+        raise NotImplementedError
+
+    def _solve(self, data):
+        raise NotImplementedError
+
+    def _write(self, f, answer, add_one=False):
+        f.write(' '.join([str(i + 1 if add_one else i) for i in answer]))
