@@ -1,0 +1,2 @@
+* Fix all problems that appeared after API changes (class methods -> instance methods)
+* (?) Add more simple Solution classes
