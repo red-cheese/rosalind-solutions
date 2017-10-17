@@ -72,5 +72,5 @@ class ArrayWriteSolution(Solution):
     def _solve(self, data):
         raise NotImplementedError
 
-    def _write(self, f, answer, add_one=False):
+    def _write(self, f, answer, add_one=False):  # TODO Remove add_one
         f.write(' '.join([str(i + 1 if add_one else i) for i in answer]))
