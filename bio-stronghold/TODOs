@@ -1,2 +1,3 @@
 * Fix all problems that appeared after API changes (class methods -> instance methods)
 * (?) Add more simple Solution classes
+* A nice util for counting number of A, C, G, T/U
