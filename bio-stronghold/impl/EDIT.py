@@ -9,7 +9,7 @@ class EDIT(solution.SimpleWriteSolution):
         return utils.read_fasta(f, dna_only=True)
 
     def solve(self, data):
-        """Levenstein distance."""
+        """Levenshtein distance."""
 
         prot1, prot2 = data
         lev = np.zeros(shape=(len(prot1), len(prot2)), dtype=np.int64)
