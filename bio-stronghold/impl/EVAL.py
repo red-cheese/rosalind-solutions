@@ -17,5 +17,6 @@ class EVAL(solution.ArrayWriteSolution):
     def solve(self, data):
         n, s, gcs = data
         probs_s = _PROB.solve((s, gcs), logprob=False)
+        # Sum the probabilities that s occurs as a substring in position 0, 1, 2, ...
         answers = [(n - len(s) + 1) * p for p in probs_s]
         return answers
