@@ -4,12 +4,10 @@ import utils
 
 class PERM(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return int(utils.first_line(f))
 
-    @classmethod
-    def _solve_helper(cls, numbers, sign=False):
+    def _solve_helper(self, numbers, sign=False):
         if len(numbers) == 0:
             raise ValueError
 
@@ -21,20 +19,18 @@ class PERM(solution.Solution):
             rest = numbers[:i] + numbers[(i + 1):]
 
             # Two passes so that the results are nicely arranged.
-            perms_rec = cls._solve_helper(rest, sign=sign)
+            perms_rec = self._solve_helper(rest, sign=sign)
             if sign:
                 perms.extend([[-n] + perm for perm in perms_rec])
             perms.extend([[n] + perm for perm in perms_rec])
 
         return perms
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         n = data
-        return cls._solve_helper([i for i in range(1, n + 1)])
+        return self._solve_helper([i for i in range(1, n + 1)])
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.write(str(len(answer)))
         f.write('\n')
 
@@ -45,13 +41,11 @@ class PERM(solution.Solution):
 
 class PPER(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         N, k = utils.first_line(f).split()
         return int(N), int(k)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         N, k = data
         P_Nk = 1
 
@@ -66,17 +60,14 @@ class PPER(solution.SimpleWriteSolution):
 
 class SIGN(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return int(utils.first_line(f))
 
-    @classmethod
-    def _solve(cls, n):
-        perms = PERM._solve_helper(list(range(1, n + 1)), sign=True)
+    def solve(self, n):
+        perms = PERM()._solve_helper(list(range(1, n + 1)), sign=True)
         return len(perms), perms
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.write(str(answer[0]) + '\n')
         for perm in answer[1]:
             f.write(' '.join([str(i) for i in perm]) + '\n')

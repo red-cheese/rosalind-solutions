@@ -4,14 +4,12 @@ import solution
 
 class HAMM(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         lines = [line.strip() for line in f if line.strip()]
         assert len(lines) == 2
         return lines
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         dna1, dna2 = data
 
         dna1 = np.asarray(list(dna1))

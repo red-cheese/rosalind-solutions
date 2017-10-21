@@ -8,7 +8,7 @@ class CAT(solution.SimpleWriteSolution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    def _solve(self, dna):
+    def solve(self, dna):
         n = len(dna)
         assert n % 2 == 0
 

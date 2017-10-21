@@ -24,7 +24,7 @@ class LEXV(solution.Solution):
 
         return words
 
-    def _solve(self, data):
+    def solve(self, data):
         alphabet, n = data
         return self._solve_helper(alphabet, n)
 

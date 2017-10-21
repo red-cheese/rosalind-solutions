@@ -7,6 +7,6 @@ class TREE(solution.SimpleWriteSolution):
         n = int(next(f))
         return n, [tuple(line.strip().split()) for line in f]
 
-    def _solve(self, data):
+    def solve(self, data):
         n, edges = data
         return n - len(edges) - 1

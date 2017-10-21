@@ -5,13 +5,11 @@ import utils
 
 class IPRB(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         line = utils.first_line(f)
         return line.split()
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         AA, Aa, aa = data
         AA = float(AA)
         Aa = float(Aa)
@@ -30,12 +28,10 @@ class IEV(solution.SimpleWriteSolution):
     # AA-AA, AA-Aa, AA-aa, Aa-Aa, Aa-aa, aa-aa
     _DOMINANT_WEIGHTS = np.asarray([1., 1., 1., .75, .5, 0.])
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         data = [int(i) for i in utils.first_line(f).split()]
         assert len(data) == 6
         return data
 
-    @classmethod
-    def _solve(cls, data):
-        return np.dot(cls._DOMINANT_WEIGHTS, 2 * np.asarray(data))
+    def solve(self, data):
+        return np.dot(self._DOMINANT_WEIGHTS, 2 * np.asarray(data))

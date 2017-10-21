@@ -6,12 +6,10 @@ class GRPH(solution.Solution):
 
     _K = 3
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         adj_list = []
 
         # Register edges v1 -> v2.
@@ -20,14 +18,13 @@ class GRPH(solution.Solution):
                 if v1_id == v2_id:
                     continue
 
-                suffix = v1_dna[-cls._K:]
-                prefix = v2_dna[:cls._K]
+                suffix = v1_dna[-self._K:]
+                prefix = v2_dna[:self._K]
                 if suffix == prefix:
                     adj_list.append((v1_id, v2_id))
 
         return adj_list
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.writelines(['{start} {end}\n'.format(start=v1_id, end=v2_id)
                       for v1_id, v2_id in answer])

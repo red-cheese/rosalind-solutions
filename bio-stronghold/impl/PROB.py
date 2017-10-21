@@ -11,7 +11,7 @@ class PROB(solution.ArrayWriteSolution):
         gcs = [float(gc) for gc in next(f).strip().split()]
         return dna, gcs
 
-    def _solve(self, data, logprob=True):
+    def solve(self, data, logprob=True):
         dna, gcs = data
         res = []
 

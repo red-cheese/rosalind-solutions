@@ -10,6 +10,6 @@ class RSTR(solution.SimpleWriteSolution):
         dna = next(f).strip()
         return N, x, dna
 
-    def _solve(self, data):
+    def solve(self, data):
         N, x, dna = data
-        return 1 - (1 - PROB.PROB(None, None)._solve((dna, [x]), logprob=False)[0]) ** N
+        return 1 - (1 - PROB.PROB().solve((dna, [x]), logprob=False)[0]) ** N

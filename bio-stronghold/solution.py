@@ -2,7 +2,7 @@
 
 class Solution:
 
-    def __init__(self, input, output):
+    def __init__(self, input=None, output=None):
         self._input = input
         self._output = output
 
@@ -17,10 +17,10 @@ class Solution:
     def _read(self, f):
         raise NotImplementedError
 
-    def _solve(self, data):
+    def _write(self, f, answer):
         raise NotImplementedError
 
-    def _write(self, f, answer):
+    def solve(self, data):
         raise NotImplementedError
 
     @classmethod
@@ -30,7 +30,7 @@ class Solution:
             yield subclass
 
     @staticmethod
-    def solve(name, input, output):
+    def go(name, input, output):
         cls = None
         for subcls in Solution.__all_subclasses__():
             if subcls.__name__ == name:
@@ -40,11 +40,11 @@ class Solution:
         if cls is None:
             raise ValueError("Unknown task: '{}'".format(name))
 
-        alg = cls(input, output)
+        alg = cls(input=input, output=output)
 
         with open(alg.input, 'r') as f:
             data = alg._read(f)
-            answer = alg._solve(data)
+            answer = alg.solve(data)
 
         with open(alg.output, 'w') as f:
             alg._write(f, answer)
@@ -54,23 +54,11 @@ class Solution:
 
 class SimpleWriteSolution(Solution):
 
-    def _read(self, f):
-        raise NotImplementedError
-
-    def _solve(self, data):
-        raise NotImplementedError
-
     def _write(self, f, answer):
         f.write(str(answer))
 
 
 class ArrayWriteSolution(Solution):
 
-    def _read(self, f):
-        raise NotImplementedError
-
-    def _solve(self, data):
-        raise NotImplementedError
-
-    def _write(self, f, answer, add_one=False):  # TODO Remove add_one
-        f.write(' '.join([str(i + 1 if add_one else i) for i in answer]))
+    def _write(self, f, answer):
+        f.write(' '.join([str(i) for i in answer]))

@@ -3,14 +3,12 @@ import solution
 
 class LEXF(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         alphabet = next(f).strip().split()
         n = int(next(f).strip())
         return alphabet, n
 
-    @classmethod
-    def _choice(cls, alphabet, n):
+    def _choice(self, alphabet, n):
         if n == 0:
             raise ValueError
         if not alphabet:
@@ -25,16 +23,14 @@ class LEXF(solution.Solution):
 
         for c in alphabet:
             res.extend([c + rest
-                        for rest in cls._choice(alphabet, n - 1)])
+                        for rest in self._choice(alphabet, n - 1)])
 
         return res
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         alphabet, n = data
-        return cls._choice(sorted(alphabet), n)
+        return self._choice(sorted(alphabet), n)
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         for s in answer:
             f.write(s + '\n')

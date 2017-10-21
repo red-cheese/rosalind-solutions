@@ -7,7 +7,7 @@ class KMP(solution.ArrayWriteSolution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    def _solve(self, s):
+    def solve(self, s):
         borders = [0] * len(s)
 
         for i in range(1, len(s)):

@@ -7,7 +7,7 @@ class TRAN(solution.SimpleWriteSolution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    def _solve(self, data):
+    def solve(self, data):
         transitions = 0
         transversions = 0
 

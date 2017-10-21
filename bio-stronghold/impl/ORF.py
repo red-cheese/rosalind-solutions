@@ -5,20 +5,17 @@ from impl import DNA_RNA_REVC
 
 class ORF(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    @classmethod
-    def _translate(cls, rna):
+    def _translate(self, rna):
         """Translate the RNA block starting with the start codon
         and without a stop codon."""
 
         return ''.join([utils.PROT_CODON_TABLE[rna[i:(i + 3)]]
                         for i in range(0, len(rna), 3)])
 
-    @classmethod
-    def _solve_helper(cls, rna):
+    def _solve_helper(self, rna):
         res = set()
         starts = []
 
@@ -30,25 +27,23 @@ class ORF(solution.Solution):
                 continue
 
             if utils.PROT_CODON_TABLE[codon] == -1 and starts:
-                res.update([cls._translate(rna[s:i]) for s in starts])
+                res.update([self._translate(rna[s:i]) for s in starts])
                 starts = []
 
         return res
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         rna = data.replace(utils.T, utils.U)
-        rna_rc = DNA_RNA_REVC.REVC._solve(data).replace(utils.T, utils.U)
+        rna_rc = DNA_RNA_REVC.REVC().solve(data).replace(utils.T, utils.U)
 
-        res = cls._solve_helper(rna)
-        res.update(cls._solve_helper(rna[1:]))
-        res.update(cls._solve_helper(rna[2:]))
-        res.update(cls._solve_helper(rna_rc))
-        res.update(cls._solve_helper(rna_rc[1:]))
-        res.update(cls._solve_helper(rna_rc[2:]))
+        res = self._solve_helper(rna)
+        res.update(self._solve_helper(rna[1:]))
+        res.update(self._solve_helper(rna[2:]))
+        res.update(self._solve_helper(rna_rc))
+        res.update(self._solve_helper(rna_rc[1:]))
+        res.update(self._solve_helper(rna_rc[2:]))
 
         return res
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.write('\n'.join(answer))

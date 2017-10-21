@@ -5,12 +5,10 @@ import utils
 
 class PMCH(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         if not data:
             return 0
 

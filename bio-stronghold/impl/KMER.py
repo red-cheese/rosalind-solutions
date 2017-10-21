@@ -2,7 +2,7 @@ import solution
 import utils
 
 
-class KMER(solution.Solution):
+class KMER(solution.ArrayWriteSolution):
 
     _ALPHABET = [utils.A, utils.C, utils.G, utils.T]
     _ALPHABET_LEN = len(_ALPHABET)
@@ -11,7 +11,7 @@ class KMER(solution.Solution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    def _solve(self, data):
+    def solve(self, data):
         answer = [0] * (self._K ** self._ALPHABET_LEN)
 
         for i in range(len(data) - self._K + 1):
@@ -24,6 +24,3 @@ class KMER(solution.Solution):
             answer[kmer_idx] += 1
 
         return answer
-
-    def _write(self, f, answer):
-        f.write(' '.join([str(i) for i in answer]))

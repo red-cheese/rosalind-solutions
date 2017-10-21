@@ -8,7 +8,7 @@ class MMCH(solution.SimpleWriteSolution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)[0]
 
-    def _solve(self, data):
+    def solve(self, data):
         coeff = 1
 
         a = sum(1 for nb in data if nb == utils.A)

@@ -6,23 +6,20 @@ class LCSM(solution.SimpleWriteSolution):
 
     _SEP = 'Z'  # Bigger than 'A', 'C', 'G', 'T'
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    @classmethod
-    def _lcp(cls, strings):
+    def _lcp(self, strings):
         res = ''
         min_len = min([len(s) for s in strings])
         for i in range(min_len):
-            if all([s[i] == strings[0][i] and s[i] != cls._SEP for s in strings]):
+            if all([s[i] == strings[0][i] and s[i] != self._SEP for s in strings]):
                 res += strings[0][i]
             else:
                 break
         return res
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         """Solve with a suffix tree + longest common prefix of len(data)
         consecutive suffixes.
 
@@ -32,14 +29,14 @@ class LCSM(solution.SimpleWriteSolution):
         k = len(data)
 
         # Build a sorted suffix array.
-        concat = cls._SEP.join(data) + cls._SEP
+        concat = self._SEP.join(data) + self._SEP
         suffixes = [concat[i:] for i in range(len(concat))]
         suffixes.sort()
 
         # Find the longest common prefix of K strings.
         max_lcp = ''
         for i in range(len(suffixes) - k):
-            lcp = cls._lcp(suffixes[i:(i + k)])
+            lcp = self._lcp(suffixes[i:(i + k)])
             if len(lcp) > len(max_lcp):
                 max_lcp = lcp
 

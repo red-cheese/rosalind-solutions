@@ -151,7 +151,7 @@ class REAR(solution.ArrayWriteSolution):
                 return max_d
         return -1
 
-    def _solve(self, data):
+    def solve(self, data):
         answers = []
         for p1, p2 in data:
             print(p1, '->', p2)

@@ -6,12 +6,10 @@ from impl import PROT_PRTM_MPRT_MRNA
 
 class SPLC(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         dna, *introns = data
 
         i = 0
@@ -30,4 +28,4 @@ class SPLC(solution.SimpleWriteSolution):
             res += dna[i]
             i += 1
 
-        return PROT_PRTM_MPRT_MRNA.PROT._solve(DNA_RNA_REVC.RNA._solve(res))
+        return PROT_PRTM_MPRT_MRNA.PROT().solve(DNA_RNA_REVC.RNA().solve(res))

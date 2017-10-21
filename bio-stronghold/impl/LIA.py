@@ -5,13 +5,11 @@ from scipy.special import binom
 
 class LIA(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         k, N = utils.first_line(f).split()
         return int(k), int(N)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         """See file LIA_explanation.jpg :D"""
 
         k, N = data

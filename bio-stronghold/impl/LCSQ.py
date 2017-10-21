@@ -8,7 +8,7 @@ class LCSQ(solution.Solution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    def _solve(self, data):
+    def solve(self, data):
         s1, s2 = data
         n = len(s1)
         m = len(s2)

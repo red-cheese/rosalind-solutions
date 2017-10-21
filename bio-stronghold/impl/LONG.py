@@ -4,12 +4,10 @@ import utils
 
 class LONG(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    @classmethod
-    def _overlap(cls, s1: str, s2: str):
+    def _overlap(self, s1: str, s2: str):
         # Swap if needed so that s1 is shorter.
         if len(s1) > len(s2):
             (s1, s2) = (s2, s1)
@@ -18,24 +16,23 @@ class LONG(solution.SimpleWriteSolution):
 
         # Try suffixes.
         for i in range(1, len(s1)):
-            #print('+', s2, s1[:i])
+            # print('+', s2, s1[:i])
             if s2.endswith(s1[:i]):
                 max_overlap = i
-                ##print(i)
+                # print(i)
 
         # Try prefixes.
         for i in range(1, len(s1)):
-            #print('-', s2, s1[-i:])
+            # print('-', s2, s1[-i:])
             if s2.startswith(s1[-i:]):
                 max_overlap = max(max_overlap, i)
-                ##print(max_overlap)
+                # print(max_overlap)
 
-        #print('OL', s1, s2, max_overlap)
+        # print('OL', s1, s2, max_overlap)
 
         return max_overlap, max_overlap * 1. / len(s2)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         """Heuristic approach: choose the pair that overlaps the most
         (= kills the biggest % of its longest member),
         glue the pair, repeat."""
@@ -52,7 +49,7 @@ class LONG(solution.SimpleWriteSolution):
                     if r1 == r2:
                         continue
 
-                    overlap, overlap_pc = cls._overlap(r1, r2)
+                    overlap, overlap_pc = self._overlap(r1, r2)
                     if max_overlap_pc < overlap_pc or (max_r1 is None and max_r2 is None):
                         max_overlap, max_overlap_pc = overlap, overlap_pc
                         max_r1 = r1
@@ -64,10 +61,10 @@ class LONG(solution.SimpleWriteSolution):
                 assert max_r1.endswith(max_r2[:max_overlap])
                 r1r2 = max_r1 + max_r2[max_overlap:]
 
-            #print(max_r1)
-            #print(max_r2)
-            #print(r1r2)
-            #print()
+            # print(max_r1)
+            # print(max_r2)
+            # print(r1r2)
+            # print()
 
             data -= {max_r1, max_r2}
             data.add(r1r2)

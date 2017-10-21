@@ -11,7 +11,7 @@ class CONS(solution.Solution):
         dnas = [list(dna) for _, dna in utils.read_fasta(f)]
         return np.asarray(dnas)
 
-    def _solve(self, data):
+    def solve(self, data):
         rows, cols = data.shape
 
         profile = np.zeros(4 * cols, dtype=np.int32).reshape((4, cols))

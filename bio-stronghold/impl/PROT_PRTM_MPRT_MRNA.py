@@ -6,12 +6,10 @@ from urllib import request
 
 class PROT(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.first_line(f)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         assert len(data) % 3 == 0
 
         prot = ''
@@ -30,12 +28,10 @@ class PROT(solution.SimpleWriteSolution):
 
 class PRTM(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.first_line(f)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         return sum([utils.PROT_MASS_TABLE[aa] for aa in data])
 
 
@@ -49,12 +45,10 @@ class MPRT(solution.Solution):
         (False, ['P']),
     ]
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return [line.strip() for line in f]
 
-    @classmethod
-    def _match(cls, prot, pattern):
+    def _match(self, prot, pattern):
         """Match the beginning of the protein string with the given pattern."""
 
         if len(prot) < len(pattern):
@@ -67,12 +61,11 @@ class MPRT(solution.Solution):
 
         return True
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         # First extract protein strings.
         prots = []
         for id_ in data:
-            url = cls._URL_FORMAT.format(id=id_)
+            url = self._URL_FORMAT.format(id=id_)
             response = request.urlopen(url).read().decode().strip()
             _,  *prot_parts = response.split('\n')
             prots.append((id_, ''.join(prot_parts)))
@@ -80,11 +73,10 @@ class MPRT(solution.Solution):
         # Then look for the motif.
         return [(id_,
                  [i for i in range(len(prot))
-                  if cls._match(prot[i:], cls._N_GLYCOLYSATION)])
+                  if self._match(prot[i:], self._N_GLYCOLYSATION)])
                 for id_, prot in prots]
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         for id_, indices in answer:
             if indices:
                 f.write('{id}\n{indices}\n'
@@ -93,12 +85,10 @@ class MPRT(solution.Solution):
 
 class MRNA(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.first_line(f)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         # Reverse the protein codon table (just counts are enough).
         num_codons = collections.defaultdict(int)
         for codon, aa in utils.PROT_CODON_TABLE.items():

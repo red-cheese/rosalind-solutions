@@ -8,7 +8,7 @@ class SSEQ(solution.Solution):
         s, t = utils.read_fasta(f, dna_only=True)
         return s, t
 
-    def _solve(self, data):
+    def solve(self, data):
         s, t = data
         if not t or not s or len(t) > len(s):
             raise ValueError

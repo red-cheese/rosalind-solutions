@@ -9,13 +9,13 @@ class PDST(solution.Solution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    def _solve(self, data):
+    def solve(self, data):
         m = np.zeros(shape=(len(data), len(data)))
 
         for i in range(0, len(data)):
             for j in range(i + 1, len(data)):
                 assert len(data[i]) == len(data[j])
-                m[i][j] = m[j][i] = HAMM.HAMM._solve((data[i], data[j])) / len(data[i])
+                m[i][j] = m[j][i] = HAMM.HAMM().solve((data[i], data[j])) / len(data[i])
 
         return m
 

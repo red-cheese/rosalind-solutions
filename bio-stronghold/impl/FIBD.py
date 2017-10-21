@@ -2,15 +2,13 @@ import solution
 import utils
 
 
-class FIBD(solution.Solution):
+class FIBD(solution.SimpleWriteSolution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         n, m = utils.first_line(f).split()
         return int(n), int(m)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         n, m = data
 
         if n == 0:
@@ -25,7 +23,3 @@ class FIBD(solution.Solution):
             rabbits[-1] = t
 
         return sum(rabbits)
-
-    @classmethod
-    def _write(cls, f, answer):
-        f.write(str(answer))

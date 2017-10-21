@@ -4,12 +4,10 @@ import utils
 
 class GC(solution.Solution):
 
-    @classmethod
-    def _read(cls, f):
+    def _read(self, f):
         return utils.read_fasta(f)
 
-    @classmethod
-    def _solve(cls, data):
+    def solve(self, data):
         max_gc_id = None
         max_gc = 0
 
@@ -21,6 +19,5 @@ class GC(solution.Solution):
 
         return max_gc_id, max_gc * 100
 
-    @classmethod
-    def _write(cls, f, answer):
+    def _write(self, f, answer):
         f.write('{}\n{}'.format(answer[0][1:], '%.6f' % answer[1]))
