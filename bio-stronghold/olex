@@ -4,6 +4,6 @@ Lessons learned:
 Can do DFS inside an approximating greedy approach.
 IDDFS didn't work - maybe precomputing paths with length up to 5 would help.
 
-* Catalan numbers
+* Catalan numbers.
 
 * KMP - Knuth-Morris-Pratt (borders).
