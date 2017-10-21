@@ -1,4 +1,4 @@
 * (+) Fix all problems that appeared after API changes (class methods -> instance methods)
 * (X) Add more simple Solution classes
 * (X) A nice util for counting number of A, C, G, T/U
-* Review of all the problems so far -> lessons learned
+* (+) Review of all the problems so far -> lessons learned

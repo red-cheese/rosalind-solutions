@@ -1,2 +1,9 @@
 Lessons learned:
 
+* REAR - reversal distance: NP-hard for unsigned permutations (polynomial for signed). Lots of approximations.
+Can do DFS inside an approximating greedy approach.
+IDDFS didn't work - maybe precomputing paths with length up to 5 would help.
+
+* Catalan numbers
+
+* KMP - Knuth-Morris-Pratt (borders).
