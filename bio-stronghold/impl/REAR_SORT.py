@@ -85,6 +85,7 @@ class REAR(solution.ArrayWriteSolution):
         """
 
         dist = 0
+        reversals = []
 
         while self._num_breakpoints(p) > 0:
             # Choose one of the reversals minimizing bp.
@@ -112,15 +113,18 @@ class REAR(solution.ArrayWriteSolution):
                 # Flip one increasing strip.
                 last_bp_index = [idx + 1 for idx, (i, j) in enumerate(zip(p[:-1], p[1:])) if abs(i - j) > 1][-1]
                 self._reverse(p, last_bp_index, len(p) - 1)
+                reversals.append((last_bp_index, len(p) - 1))
             else:
                 assert best_i is not None and best_j is not None
                 self._reverse(p, best_i, best_j)
+                reversals.append((best_i, best_j))
 
         # We came to the decreasing sequence - one last flip.
         if p[-1] == 0:
             dist += 1
+            reversals.append((0, len(p) - 1))
 
-        return dist
+        return dist, reversals
 
     def _inverse(self, p):
         inv = [None] * len(p)
@@ -151,22 +155,46 @@ class REAR(solution.ArrayWriteSolution):
                 return max_d
         return -1
 
-    def solve(self, data):
+    def solve(self, data, reversals=False):
         answers = []
+        reversals = []
         for p1, p2 in data:
             print(p1, '->', p2)
             # p1 to p2 <=> inv(p2) * p1 <=> 1
             p2_inv = self._inverse(p2)
 
-            min_ans = self._breakpoint_reversal_sort(self._dot(p2_inv, p1))
+            min_ans, best_rev = self._breakpoint_reversal_sort(self._dot(p2_inv, p1))
             # See the explanation of this hack above.
-            for _ in range(500):
-                ans = self._breakpoint_reversal_sort(self._dot(p2_inv, p1))
+            for _ in range(1000):
+                ans, rev = self._breakpoint_reversal_sort(self._dot(p2_inv, p1))
                 if ans < min_ans:
                     min_ans = ans
+                    best_rev = rev
 
             answers.append(min_ans)
-        return answers
+            reversals.append(best_rev)
+        return answers, reversals if reversals else answers
+
+
+class SORT(solution.Solution):
+
+    def _read(self, f):
+        p1 = [int(i) - 1 for i in next(f).strip().split()]
+        p2 = [int(i) - 1 for i in next(f).strip().split()]
+        return p1, p2
+
+    def _write(self, f, answer):
+        d, reversals = answer
+        f.write(str(d) + '\n')
+        for i, j in reversals:
+            f.write('{} {}\n'.format(i + 1, j + 1))
+
+    def solve(self, data):
+        p1, p2 = data
+        d, reversals = REAR().solve([(p1, p2)], reversals=True)
+        d, reversals = d[0], reversals[0]
+        assert d == len(reversals)
+        return d, reversals
 
 
 def _test():
