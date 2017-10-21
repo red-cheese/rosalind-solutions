@@ -12,6 +12,7 @@ class ASPC(solution.SimpleWriteSolution):
         n, m = data
         answer = 0
         for k in range(m, n + 1):
+            # Python is awesome :)
             answer += (math.factorial(n) // math.factorial(k) // math.factorial(n - k))
             answer %= 1000000
         return int(answer)
