@@ -8,7 +8,7 @@ class LCSQ(solution.Solution):
     def _read(self, f):
         return utils.read_fasta(f, dna_only=True)
 
-    def solve(self, data):
+    def solve(self, data, indices=False):
         s1, s2 = data
         n = len(s1)
         m = len(s2)
@@ -30,7 +30,7 @@ class LCSQ(solution.Solution):
 
         while i >= 0 and j >= 0:
             if s1[i] == s2[j]:
-                res.append(s1[i])
+                res.append(s1[i] if not indices else (i, j))
                 i -= 1
                 j -= 1
             elif (i > 0 and lcs[i - 1][j] >= lcs[i][j - 1]) or j == 0:
