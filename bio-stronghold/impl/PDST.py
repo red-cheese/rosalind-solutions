@@ -1,7 +1,8 @@
 import numpy as np
 import solution
 import utils
-from impl import HAMM
+
+import HAMM
 
 
 class PDST(solution.Solution):

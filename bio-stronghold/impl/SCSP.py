@@ -1,6 +1,6 @@
 import solution
 
-from impl import LCSQ
+import LCSQ
 
 
 class SCSP(solution.Solution):

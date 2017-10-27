@@ -1,6 +1,7 @@
 import solution
 import utils
-from impl import DNA_RNA_REVC
+
+import DNA_RNA_REVC
 
 
 class REVP(solution.Solution):

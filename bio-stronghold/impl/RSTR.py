@@ -1,5 +1,6 @@
 import solution
-from impl import PROB
+
+import PROB
 
 
 class RSTR(solution.SimpleWriteSolution):

@@ -1,8 +1,9 @@
 import collections
 import solution
 import utils
-from impl import DNA_RNA_REVC
-from impl import HAMM
+
+import DNA_RNA_REVC
+import HAMM
 
 
 class CORR(solution.Solution):

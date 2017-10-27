@@ -1,6 +1,6 @@
 import solution
 
-from impl import PROB
+import PROB
 
 
 _PROB = PROB.PROB()

@@ -1,7 +1,8 @@
 import solution
 import utils
-from impl import DNA_RNA_REVC
-from impl import PROT_PRTM_MPRT_MRNA
+
+import DNA_RNA_REVC
+import PROT_PRTM_MPRT_MRNA
 
 
 class SPLC(solution.SimpleWriteSolution):
