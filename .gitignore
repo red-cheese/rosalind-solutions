@@ -6,3 +6,5 @@ __pycache__
 # I am keeping them in the repo to calm my PyCharm.
 solution.py
 utils.py
+in.txt
+out.txt
